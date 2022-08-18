@@ -36,10 +36,12 @@ export const addMetamaskAddress = async (params: any) => {
 };
 
 export const getAddress = async () => {
+  console.log("HI");
   const result = await axios.post(
     BACKEND_API_PREFIX + PUBLIC_PREFIX + METAMASK_PREFIX + GET_PREFIX
   );
   if (result.status === 200) {
     return result.data;
+    // console.log("Yeh:", result.data);
   }
 };

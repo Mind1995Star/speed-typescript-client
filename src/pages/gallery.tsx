@@ -17,6 +17,7 @@ export default function Gallery() {
           <div className="flex w-full sm-[540px]:w-[50%] overflow-hidden">
             <img
               src={Gallery1}
+              alt="gallery1"
               className="hover:scale-125 w-full transition-all duration-500"
             ></img>
           </div>
@@ -25,12 +26,14 @@ export default function Gallery() {
               <div className="flex w-full sm:w-1/2 overflow-hidden">
                 <img
                   src={Gallery2}
+                  alt="gallery2"
                   className="hover:scale-125 w-full transition-all duration-500"
                 ></img>
               </div>
               <div className="flex w-full sm:w-1/2 overflow-hidden">
                 <img
                   src={Gallery3}
+                  alt="gallery3"
                   className="hover:scale-125 w-full transition-all duration-500"
                 ></img>
               </div>
@@ -39,12 +42,14 @@ export default function Gallery() {
               <div className="flex w-full sm:w-1/2 overflow-hidden">
                 <img
                   src={Gallery4}
+                  alt="gallery4"
                   className="hover:scale-125 w-full transition-all duration-500"
                 ></img>
               </div>
               <div className="flex w-full sm:w-1/2 overflow-hidden">
                 <img
                   src={Gallery1}
+                  alt="gallery1"
                   className="hover:scale-125 w-full transition-all duration-500"
                 ></img>
               </div>

@@ -1,7 +1,6 @@
 import Header from "../components/header";
 import PublicPage from "../views/public";
 import Modal from "../pages/modal";
-// import { ToastContainer } from "react-toastify";
 
 export default function PublicLayout() {
   return (
@@ -10,7 +9,6 @@ export default function PublicLayout() {
         <Header />
         <PublicPage />
         <Modal />
-        {/* <ToastContainer /> */}
       </div>
     </>
   );

@@ -23,7 +23,11 @@ export default function Team() {
         <div className="flex flex-wrap mx-auto">
           <div className="my-1 px-5 w-full sm:w-1/2 md:my-4 md:w-1/4">
             <div className="flex justify-center">
-              <img src={JACK_IMAGE} className="w-[250px]"></img>
+              <img
+                src={JACK_IMAGE}
+                alt="jack-image"
+                className="w-[250px]"
+              ></img>
             </div>
             <div className="flex justify-center text-center mb-[15px] text-[white] text-2xl">
               Jack
@@ -34,7 +38,11 @@ export default function Team() {
           </div>
           <div className="my-1 px-5 w-full sm:w-1/2 md:my-4 md:w-1/4">
             <div className="flex justify-center">
-              <img src={CAROLS_IMAGE} className="w-[250px]"></img>
+              <img
+                src={CAROLS_IMAGE}
+                alt="carols-image"
+                className="w-[250px]"
+              ></img>
             </div>
             <div className="flex justify-center text-center mb-[15px] text-[white] text-2xl">
               Carlos
@@ -46,7 +54,11 @@ export default function Team() {
           </div>
           <div className="my-1 px- w-full sm:w-1/2 md:my-4 md:w-1/4">
             <div className="flex justify-center">
-              <img src={JACK_IMAGE} className="w-[250px]"></img>
+              <img
+                src={JACK_IMAGE}
+                alt="jack-image"
+                className="w-[250px]"
+              ></img>
             </div>
             <div className="flex justify-center text-center mb-[15px] text-[white] text-2xl">
               Max
@@ -57,7 +69,11 @@ export default function Team() {
           </div>
           <div className="my-1 px-1 w-full sm:w-1/2 md:my-4 md:w-1/4">
             <div className="flex justify-center">
-              <img src={JACK_IMAGE} className="w-[250px]"></img>
+              <img
+                src={JACK_IMAGE}
+                alt="jack-image"
+                className="w-[250px]"
+              ></img>
             </div>
             <div className="flex justify-center text-center mb-[15px] text-[white] text-2xl">
               Brad

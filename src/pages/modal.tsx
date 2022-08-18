@@ -1,10 +1,13 @@
 import MetaMask from "../assets/images/metamask.png";
 import WalletConnect from "../assets/images/walletconnect.png";
 import { useMoralis } from "react-moralis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addMetamaskAddress } from "../actions/metamask.action";
-import { NotifySuccess } from "../utilities";
+// import { NotifySuccess } from "../utilities";
 import { addWalletAddress } from "../actions/wallet.action";
+import { ethers } from "ethers";
+import { NotifySuccess } from "../utilities";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Modal() {
   const {
@@ -23,26 +26,46 @@ export default function Modal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
+  const [haveMetamask, sethaveMetamask] = useState(true);
+  const [accountAddress, setAccountAddress] = useState("");
+  const [accountBalance, setAccountBalance] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
+
+  const { ethereum } = window as any;
+  const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+
+  useEffect(() => {
+    const { ethereum } = window as any;
+    const checkMetamaskAvailability = async () => {
+      if (!ethereum) {
+        sethaveMetamask(false);
+      }
+      sethaveMetamask(true);
+    };
+    checkMetamaskAvailability();
+  }, []);
+
   const MetaMaskLogin = async () => {
-    await logout();
-    if (!isAuthenticated) {
-      await authenticate({
-        provider: "metamask",
-      })
-        .then(async function (user) {
-          const address = user!.get("ethAddress");
-          const data = await addMetamaskAddress(address);
-          if (data) {
-            // NotifySuccess("Registered in the Database");
-            console.log(data.data);
-          } else {
-            console.log("Error");
-            // NotifyFail("Error Ocurred");
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    try {
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      setAccountAddress(accounts[0]);
+      const data = await addMetamaskAddress(accounts[0]);
+      const modal = document.getElementById("modal");
+      if (modal !== null) modal.classList.toggle("hidden");
+      if (data) {
+        // NotifySuccess("Success");
+        if (data.data.flag === 1) toast.error("Address already exists");
+        else if (data.data.flag === 2)
+          toast.success("Address added successfully.");
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      setIsConnected(false);
+      toast.error("Inserting failed!");
     }
   };
   const WalletLogin = async () => {
@@ -75,9 +98,12 @@ export default function Modal() {
 
   return (
     <>
+      <Toaster position="top-right" />
+      <div className="notification-box flex flex-col items-center justify-center fixed w-full z-50 p-3"></div>
       <div
         className="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden font-sans"
         id="modal"
+        x-data="alertComponent()"
       >
         <div className="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div className="fixed inset-0 transition-opacity">

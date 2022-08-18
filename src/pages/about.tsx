@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import CRYPTO_SPEEDWAY from "../assets/images/crypto-speedway.jpeg";
+import { PUBLIC_PREFIX, TEST_PREFIX } from "../configs/public.config";
 
 // import { login } from "../hooks/useAuth";
 
@@ -8,6 +9,12 @@ export default function About() {
   const toggleModal = () => {
     const modal = document.getElementById("modal");
     if (modal !== null) modal.classList.toggle("hidden");
+  };
+
+  const viewAccount = () => {
+    history.push({
+      pathname: PUBLIC_PREFIX + TEST_PREFIX,
+    });
   };
 
   return (
@@ -37,12 +44,24 @@ export default function About() {
             are also doing a Giveaway of 10 unique NFT cars that will be
             compatible in the game. Enter below to receive one free entry!
           </p>
-          <a
-            onClick={() => toggleModal()}
-            className="flex py-[10px] text-[15px] cursor-pointer justify-center px-[15px] md:py-[15px] md:text-[25px] mb-[20px] bg-[#3898EC] text-center rounded-[10px] hover:bg-[#0057a3]"
-          >
-            MINT
-          </a>
+          <div className="flex flex-row">
+            <div className="w-1/2 m-1">
+              <a
+                onClick={() => toggleModal()}
+                className="flex py-[10px] text-[15px] cursor-pointer justify-center px-[15px] md:py-[15px] md:text-[25px] mb-[20px] bg-[#3898EC] text-center rounded-[10px] hover:bg-[#0057a3]"
+              >
+                MINT
+              </a>
+            </div>
+            <div className="w-1/2 m-1">
+              <a
+                onClick={() => viewAccount()}
+                className="flex py-[10px] text-[15px] cursor-pointer justify-center px-[15px] md:py-[15px] md:text-[25px] mb-[20px] bg-[#3898EC] text-center rounded-[10px] hover:bg-[#0057a3]"
+              >
+                View Wallet Account
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
